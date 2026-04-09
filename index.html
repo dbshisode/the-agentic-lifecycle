@@ -1737,7 +1737,7 @@ workflow.set_entry_point("supervisor")</code></pre>
                     const settings = JSON.parse(saved);
                     currentChapterIndex = settings.chapter || 0;
                     
-                    // Respect OS preference if no theme saved, otherwise use saved
+                    // Use saved theme preference
                     if (settings.theme !== undefined) {
                         isDarkMode = settings.theme;
                     }
@@ -1746,12 +1746,8 @@ workflow.set_entry_point("supervisor")</code></pre>
                 } catch (e) {
                     console.error("Could not load settings", e);
                 }
-            } else {
-                // Check OS dark mode preference on first load
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    isDarkMode = true;
-                }
             }
+            // Removed OS preference check. isDarkMode is naturally false, so it defaults to light mode.
         }
 
         // Start App
